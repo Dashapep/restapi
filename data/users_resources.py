@@ -1,4 +1,5 @@
 import flask
+from flask import jsonify
 
 from data import db_session
 import parser

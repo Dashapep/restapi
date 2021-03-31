@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_restful import reqparse, abort, Api, Resource
 
-from data import jobs_api
+from data import jobs_api, jobs_resources
 from data import db_session
 from data.add_job import AddJobForm
 from data.login_form import LoginForm
@@ -16,9 +16,9 @@ app = Flask(__name__)
 api = Api(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 # для списка объектов
-# api.add_resource(news_resources.NewsListResource, '/api/v2/news')
+api.add_resource(jobs_resources.JobsListResource, '/api/v2/jobs')
 # # для одного объекта
-# api.add_resource(news_resources.NewsResource, '/api/v2/news/<int:news_id>')
+api.add_resource(jobs_resources.JobsResource, '/api/v2/jobs/<int:jobs_id>')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
